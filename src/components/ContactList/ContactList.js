@@ -1,12 +1,11 @@
 import PropTypes from "prop-types";
 import s from './ContactList.module.css';
 
-// export default function ContactList({ title, contacts, onBtnClick }) {
 export default function ContactList({ contacts, onBtnClick }) {
 
   return (
     <div>
-      {/* <h2>{title}</h2> */}
+      
        <ol className={s.contactList}>
         {contacts.map(({ id, name, number }) => (
           <li className={s.contactItem} key={id}>
@@ -22,7 +21,7 @@ export default function ContactList({ contacts, onBtnClick }) {
 }
 
 ContactList.propTypes = {
-  title: PropTypes.string.isRequired,
+
   contacts: PropTypes.arrayOf(
       PropTypes.shape({
     id: PropTypes.string.isRequired,

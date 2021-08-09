@@ -11,6 +11,22 @@ class App extends Component {
     filter: "",
   };
 
+  componentDidUpdate(prevState) {
+    const prevContacts = prevState.contacts;
+    const nextContacts = this.state.contacts;
+    if (prevContacts !== nextContacts) {
+       localStorage.setItem('contacts', JSON.stringify(nextContacts))
+    }
+  };
+
+  componentDidMount() {
+    const contactsFromLocal = JSON.parse(localStorage.getItem('contacts'));
+    if (contactsFromLocal) {
+      this.setState({ contacts: contactsFromLocal })
+    }
+      
+  }
+
   addContactToList = (name, number) => {
     const newContact = {
       id: uuidv4(),
@@ -63,7 +79,7 @@ class App extends Component {
             contacts={contactsToRender}
             onBtnClick={this.deleteContact}
           />
-          {/* <ContactList title={"Contacts"} contacts={contactsToRender} onBtnClick={this.deleteContact}/> */}
+          
         </Section>
       </div>
     );
